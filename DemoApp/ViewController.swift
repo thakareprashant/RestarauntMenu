@@ -69,15 +69,20 @@ extension ViewController:UITableViewDelegate,UITableViewDataSource{
         guard let cell = tableView.dequeueReusableCell(withIdentifier: DashboardTableViewCell.identifier) as? DashboardTableViewCell else{
             return UITableViewCell()
         }
-        let data = self.mealModel?.meals?[indexPath.row]
-        if let url = URL(string: data?.strMealThumb ?? ""){
+        guard let data = self.mealModel?.meals?[indexPath.row] else {
+            return cell
+        }
+        
+        if let url = URL(string: data.strMealThumb ?? ""){
             cell.imageV.kf.setImage(with: url)
         }
         cell.selectionStyle = .none
-        cell.setIngridiants(mealData: self.mealModel?.meals ?? [])
+        cell.setIngridiants(item:data)
 //        cell.collectionView.backgroundColor = .blue
-        cell.titleLbl.text = data?.strMeal
-        cell.descLbl.text = data?.strInstructions
+        cell.titleLbl.text = data.strMeal
+        cell.descLbl.text = data.strInstructions
+        cell.mainView.layer.borderWidth = 1
+        cell.mainView.layer.borderColor = UIColor.gray.cgColor
         
         return cell
     }

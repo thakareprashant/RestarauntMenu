@@ -30,8 +30,8 @@ class DashboardTableViewCell: UITableViewCell {
         collectionView.dataSource = self
         // Initialization code
     }
-    func setIngridiants(mealData:[Json4Swift_Base]){
-        for item in mealData{
+    func setIngridiants(item:Json4Swift_Base){
+       
             arrayIngriant.append(item.strIngredient1 ?? "")
             arrayIngriant.append(item.strIngredient2 ?? "")
             arrayIngriant.append(item.strIngredient3 ?? "")
@@ -52,7 +52,7 @@ class DashboardTableViewCell: UITableViewCell {
             arrayIngriant.append(item.strIngredient19 ?? "")
             arrayIngriant.append(item.strIngredient20 ?? "")
             
-        }
+        
        
         let filterArray = self.arrayIngriant.filter { str in
             return str != ""
@@ -86,12 +86,12 @@ extension DashboardTableViewCell:UICollectionViewDelegate,UICollectionViewDataSo
             return UICollectionViewCell()
         }
         cell.titleLbl.text = self.arrayIngriant[indexPath.row]
-        cell.backgroundColor = .darkGray
+        cell.mainView.layer.cornerRadius = 10
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
         
-        return CGSize(width:100, height: 50)
+        return CGSize(width:130, height: collectionView.frame.height)
     }
     
     

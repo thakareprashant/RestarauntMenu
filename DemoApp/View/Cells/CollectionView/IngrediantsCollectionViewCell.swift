@@ -8,6 +8,7 @@
 import UIKit
 
 class IngrediantsCollectionViewCell: UICollectionViewCell {
+    @IBOutlet weak var mainView: UIView!
     static let identifier = "IngrediantsCollectionViewCell"
     @IBOutlet weak var imageView: UIImageView!
     
